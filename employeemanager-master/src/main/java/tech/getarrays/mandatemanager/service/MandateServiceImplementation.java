@@ -3,6 +3,10 @@ package tech.getarrays.mandatemanager.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +21,9 @@ public class MandateServiceImplementation implements MandateService {
 
 	@Autowired
 	private MandateRepository mandateRepository;
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public Mandate createMandate(Mandate mandate) {
@@ -43,11 +50,18 @@ public class MandateServiceImplementation implements MandateService {
 	}
 
 	@Override
-	public List<Mandate> getAllMandate(String Id) {
-		if(Id!=null)
-		return this.mandateRepository.findByIdLike(Id);
-		
-		return this.mandateRepository.findAll();
+	public List<Mandate> getAllMandate(String branchCode, String mandateType) {
+		// System.out.println("DDDDDDDDD"+Id);
+		// if(Id!=null)
+		// return this.mandateRepository.findByIdLike(Id);
+		if (branchCode == "" || branchCode == null) {
+			branchCode = "%";
+		}
+		if (mandateType == "" || mandateType == null) {
+			mandateType = "%";
+		}
+		return this.mandateRepository.findByQuery(branchCode, mandateType);
+		// return this.mandateRepository.findAll();
 	}
 
 	@Override
@@ -71,6 +85,23 @@ public class MandateServiceImplementation implements MandateService {
 			throw new ResourceNotFoundException("Mandate Not found" + mandateId);
 		}
 
+	}
+
+	@Override
+	public List<String> getForAutoComplete(String field, String branchCode, String mandateType) {
+		String queryString = "select distinct ";
+		queryString += field;
+		if (branchCode == "" || branchCode == null) {
+			branchCode = "%";
+		}
+		if (mandateType == "" || mandateType == null) {
+			mandateType = "%";
+		}
+		queryString += " from mandates where branch_code like '" + branchCode + "%' " + "and mandate_type like '"
+				+ mandateType + "%'";
+		Query q = entityManager.createNativeQuery(queryString);
+		System.out.println(q.getResultList());
+		return q.getResultList();
 	}
 
 }
