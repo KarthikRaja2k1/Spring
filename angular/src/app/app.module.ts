@@ -8,12 +8,17 @@ import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { HttpClientModuleComponent } from './http-client-module/http-client-module.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopUpComponent } from './pop-up/pop-up.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SearchComponent,
-    HttpClientModuleComponent
+    HttpClientModuleComponent,
+    PopUpComponent
+
   ],
   imports: [
     BrowserModule,
@@ -21,6 +26,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
