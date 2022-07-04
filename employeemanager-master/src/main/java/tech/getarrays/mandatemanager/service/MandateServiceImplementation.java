@@ -44,7 +44,6 @@ public class MandateServiceImplementation implements MandateService {
 
 	@Override
 	public List<Mandate> getAllMandate(String Id) {
-		System.out.println("DDDDDDDDD"+Id);
 		if(Id!=null)
 		return this.mandateRepository.findByIdLike(Id);
 		

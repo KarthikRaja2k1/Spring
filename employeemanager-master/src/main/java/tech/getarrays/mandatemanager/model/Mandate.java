@@ -1,6 +1,6 @@
 package tech.getarrays.mandatemanager.model;
 
-import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,22 +10,21 @@ import javax.persistence.Table;
 @Table(name="mandates")
 public class Mandate {
 	@Id
-	private Long id;
-	private String payerId; // (FK)
-	private String payeeId; // (FK)
-	private Date validFrom;
-	// Branch code
-	@Override
-	public String toString() {
-		return "Mandate [id=" + id + ", payerId=" + payerId + ", payeeId=" + payeeId + ", validFrom=" + validFrom
-				+ ", validTo=" + validTo + ", status=" + status + ", refNo=" + refNo + ", branchCode=" + branchCode
-				+ "]";
+	private Long mandateId;
+	private String payerId; //(FK)
+	private String payeeId; //FK
+	private String mandateValidFrom;
+	private String mandateValidTo;
+	private String status;
+	private String mandateRefNo;
+	private Long branchCode;
+	
+	
+	public Long getMandateId() {
+		return mandateId;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setMandateId(Long mandateId) {
+		this.mandateId = mandateId;
 	}
 	public String getPayerId() {
 		return payerId;
@@ -39,38 +38,43 @@ public class Mandate {
 	public void setPayeeId(String payeeId) {
 		this.payeeId = payeeId;
 	}
-	public Date getValidFrom() {
-		return validFrom;
+	public String getMandateValidFrom() {
+		return mandateValidFrom;
 	}
-	public void setValidFrom(Date validFrom) {
-		this.validFrom = validFrom;
+	public void setMandateValidFrom(String mandateValidFrom) {
+		this.mandateValidFrom = mandateValidFrom;
 	}
-	public Date getValidTo() {
-		return validTo;
+	public String getMandateValidTo() {
+		return mandateValidTo;
 	}
-	public void setValidTo(Date validTo) {
-		this.validTo = validTo;
+	public void setMandateValidTo(String mandateValidTo) {
+		this.mandateValidTo = mandateValidTo;
 	}
-	public Boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getRefNo() {
-		return refNo;
+	public String getMandateRefNo() {
+		return mandateRefNo;
 	}
-	public void setRefNo(String refNo) {
-		this.refNo = refNo;
+	public void setMandateRefNo(String mandateRefNo) {
+		this.mandateRefNo = mandateRefNo;
 	}
-	public Integer getBranchCode() {
+	public Long getBranchCode() {
 		return branchCode;
 	}
-	public void setBranchCode(Integer branchCode) {
+	public void setBranchCode(Long branchCode) {
 		this.branchCode = branchCode;
 	}
-	private Date validTo;
-	private Boolean status;
-	private String refNo;
-	private Integer branchCode;
+	@Override
+	public String toString() {
+		return "Mandate [mandateId=" + mandateId + ", payerId=" + payerId + ", payeeId=" + payeeId
+				+ ", mandateValidFrom=" + mandateValidFrom + ", mandateValidTo=" + mandateValidTo + ", status=" + status
+				+ ", mandateRefNo=" + mandateRefNo + ", branchCode=" + branchCode + "]";
+	}
+	
+	
+	
 }

@@ -35,6 +35,7 @@ public class MandateController {
 		
 	}
 	
+	
 	@GetMapping("/mandates/{id}")
 	public ResponseEntity<Mandate> getMandateById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(mandateService.getMandateById(id));

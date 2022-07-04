@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   cols:Array<any>;
   data:any;
   constructor(private http : HttpClient){
-     this.cols=["id","payerId","payeeId","validFrom","validTo","status","refNo","branchCode"]
+     this.cols=["id","payerId","payeeId","validFrom","validTo","status"]
      this.data=[]
 }
 

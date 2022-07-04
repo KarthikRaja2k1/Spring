@@ -32,7 +32,12 @@
           <tr><th *ngFor="let col of cols">{{col}}</th></tr>
           <ng-container *ngIf="(data | json) != ([] | json); else templateA">
             <tr  *ngFor="let row of data">
-              <td *ngFor="let col of cols">{{row[col]}}</td>
+              <td>{{row["id"]}}</td>
+              <td>{{row["payerId"]}}</td>
+              <td>{{row["payeeId"]}}</td>
+              <td>{{row["validFrom"]}}</td>
+              <td>{{row["validTo"]}}</td>
+              <td><a [attr.href]="'http://localhost:8080/mandates/'+row['id']">{{row["status"]}}</a></td>
             </tr>
           </ng-container>
           <ng-template  #templateA>

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name="accounts")
 public class Account {
 	@Id
-	Long ID;
+	Long Account_ID;
 	String Account_type;
 	String Account_Alias_type;
 	String Account_BIC;
