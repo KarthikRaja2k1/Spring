@@ -13,7 +13,7 @@ import tech.getarrays.mandatemanager.model.Mandate;
 
 @Repository
 public interface MandateRepository extends JpaRepository<Mandate,Long> {
-	@Query(value="SELECT * FROM mandates WHERE id LIKE :id%",nativeQuery = true)
-	List<Mandate> findByIdLike(@Param("id") String id);
+	@Query(value="SELECT * FROM mandates WHERE branch_code LIKE :branchCode% and mandate_type like :mandateType%",nativeQuery = true)
+	List<Mandate> findByQuery(@Param("branchCode") String branchCode,@Param("mandateType") String mandateType);
 
 }

@@ -11,9 +11,20 @@ import javax.persistence.Table;
 public class Mandate {
 	@Id
 	private Long id;
+	private String branchCode;
 	private String payerId; // (FK)
+	private String mandateType;
 	private String payeeId; // (FK)
+	private Boolean status;
 	private Date validFrom;
+	private Date validTo;
+	
+	public String getMandate_Type() {
+		return mandateType;
+	}
+	public void setMandate_Type(String mandateType) {
+		this.mandateType = mandateType;
+	}
 	// Branch code
 	@Override
 	public String toString() {
@@ -63,14 +74,12 @@ public class Mandate {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
-	public Integer getBranchCode() {
+	public String getBranchCode() {
 		return branchCode;
 	}
-	public void setBranchCode(Integer branchCode) {
+	public void setBranchCode(String branchCode) {
 		this.branchCode = branchCode;
 	}
-	private Date validTo;
-	private Boolean status;
 	private String refNo;
-	private Integer branchCode;
+	
 }

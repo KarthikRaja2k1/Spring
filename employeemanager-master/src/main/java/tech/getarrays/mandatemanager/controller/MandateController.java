@@ -31,10 +31,30 @@ public class MandateController {
 		    if(Params.get(key)==null)
 		    	Params.replace(key,"%");
 		}
-		return ResponseEntity.ok().body(mandateService.getAllMandate(Params.get("branchCode")));
+		return ResponseEntity.ok().body(mandateService.getAllMandate(Params.get("branchCode"),Params.get("mandateType")));
 		
 	}
 	
+	@GetMapping("/branchCode")
+	@JsonProperty("Params")
+	public ResponseEntity<List<String>> getBranchCodes(@RequestBody HashMap<String,String> Params){
+		for(String Key: Params.keySet()) {
+			if(Params.get(Key)==null) {
+				Params.replace(Key, "%");
+			}
+		}
+		return ResponseEntity.ok().body(mandateService.getForAutoComplete("branch_code",Params.get("branchCode"),Params.get("mandateType")));
+	}
+	@GetMapping("/mandateType")
+	@JsonProperty("Params")
+	public ResponseEntity<List<String>> getMandateType(@RequestBody HashMap<String,String> Params){
+		for(String Key: Params.keySet()) {
+			if(Params.get(Key)==null) {
+				Params.replace(Key, "%");
+			}
+		}
+		return ResponseEntity.ok().body(mandateService.getForAutoComplete("mandate_type",Params.get("branchCode"),Params.get("mandateType")));
+	}
 	@GetMapping("/mandates/{id}")
 	public ResponseEntity<Mandate> getMandateById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(mandateService.getMandateById(id));
