@@ -8,16 +8,16 @@ import javax.persistence.Table;
 @Table(name="accounts")
 public class Account {
 	@Id
-	Long Account_ID;
-	String Account_type;
-	String Account_Alias_type;
-	String Account_BIC;
-	String Ultimate_account_holder;
-	String Linked_account;
-	String Account_ID_type;
-	String Linked_PayID;
-	String Branch_code;
-	String Account_number;
-	String Name ;
+	String id;
+	String accounType;
+	String accountAliasType;
+	String accountBIC;
+	String ultimateAccountHolder;
+	String linkedAccount;
+	String accountIdType;
+	String linkedPayId;
+	String branchCode;
+	String accountNumber;
+	String name ;
 
 }

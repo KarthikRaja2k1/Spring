@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mandatemanager.displayformat.MandateTable;
+
 import tech.getarrays.mandatemanager.exception.ResourceNotFoundException;
 import tech.getarrays.mandatemanager.model.Mandate;
 import tech.getarrays.mandatemanager.repo.MandateRepository;
@@ -50,7 +52,7 @@ public class MandateServiceImplementation implements MandateService {
 	}
 
 	@Override
-	public List<Mandate> getAllMandate(String branchCode, String mandateType) {
+	public List<MandateTable> getAllMandate(String branchCode, String mandateType) {
 		// System.out.println("DDDDDDDDD"+Id);
 		// if(Id!=null)
 		// return this.mandateRepository.findByIdLike(Id);
