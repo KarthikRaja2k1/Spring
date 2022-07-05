@@ -3,30 +3,33 @@
     <p id="side">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amend, Suspend or Cancel Mandates</p>
     <hr>
     <form>
-
+         <div class="f">
           <label for="Branch Code" class="label">
             Branch Code
           </label>
           <input  type="text" [formControl] ="branchCode" placeholder="Enter Branch Code">
-        
+        </div>
       
-        
+         <div class="f">
           <label for="Mandate Type" class="label">
             Mandate Type
           </label>
           <input id="branchCode" type="number" [formControl]="mandateType" placeholder="Enter Mandate Type">
+        </div>
 
+         <div class="f">
           <label for="Mandate ID" class="label">
             Mandate ID
           </label>
           <input id="address" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID">
+          </div>
 
           <label for="Account Number" class="label">
             Account Number
           </label>
           <input id="address" type="text" [formControl] = "accountNumber" placeholder="Enter Account Number">
          <br><br>
-        <button class="button-18" (click)="Search();"type="submit">Search</button>
+        <button class="button-18" (click)="Search();"type="submit">Search</button> <br><br>
       <div id="table">
         <table style="width: 100%;border: 1px black solid;">
           <tr><th *ngFor="let col of cols">{{col}}</th></tr>
@@ -46,5 +49,8 @@
         </table>
       </div>
       </form>
+      <button (click)="openDialog()">
+        Edit
+      </button>
 
 </div>

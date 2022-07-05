@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from  '@angular/material/dialog';
+import { PopUpComponent } from '../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +19,7 @@ export class SearchComponent implements OnInit {
   // mandateType = new FormControl(20, Validators.required); 
   cols:Array<any>;
   data:any;
-  constructor(private http : HttpClient){
+  constructor(private http : HttpClient,private  dialogRef : MatDialog){
      this.cols=["id","payerId","payeeId","validFrom","validTo","status"]
      this.data=[]
 }
@@ -33,7 +35,12 @@ Search(){
   console.log(Response);
   });
 }
+openDialog(){
 
-
-
+  this.dialogRef.open(PopUpComponent,{
+    width: '600px',
+    height: '1000px',
+    position: {right: '5px'}
+  }) 
+}
 }
