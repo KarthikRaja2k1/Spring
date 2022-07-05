@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { HttpClientModuleComponent } from './http-client-module/http-client-module.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
@@ -27,10 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+ 
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, PopUpComponent, SearchComponent]
 })
 export class AppModule { }

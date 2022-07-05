@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from  '@angular/material/dialog';
-import { PopUpComponent } from './pop-up/pop-up.component';
+
 
 
 @Component({
@@ -10,9 +9,6 @@ import { PopUpComponent } from './pop-up/pop-up.component';
 })
 export class AppComponent {
   title = 'first angular ';
-  constructor(private  dialogRef : MatDialog){}
-  openDialog(){
-    this.dialogRef.open(PopUpComponent);
-  }
+ 
 }
  
