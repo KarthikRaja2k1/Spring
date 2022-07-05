@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mandatemanager.displayformat.MandateTable;
 
+import tech.getarrays.mandatemanager.displayformat.MandateTable;
 import tech.getarrays.mandatemanager.model.Mandate;
 import tech.getarrays.mandatemanager.service.MandateService;
 
@@ -66,9 +66,9 @@ public class MandateController {
 		return ResponseEntity.ok().body(mandateService.getMandateById(id));
 	}
 
-	@PutMapping("/mandates/{id}")
-	public ResponseEntity<Mandate> updateMandate(@PathVariable Long id, @RequestBody Mandate mandate) {
-		return ResponseEntity.ok().body(mandateService.getMandateById(id));
+	@PutMapping("/mandates")
+	public ResponseEntity<Mandate> updateMandate( @RequestBody Mandate mandate) {
+		return ResponseEntity.ok().body(mandateService.updateMandate(mandate));
 	}
 
 }

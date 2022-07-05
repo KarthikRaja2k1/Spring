@@ -8,6 +8,6 @@ import tech.getarrays.mandatemanager.model.Account;
 
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Account,Long> {
+public interface AccountRepository extends JpaRepository<Account,String> {
 	
 }

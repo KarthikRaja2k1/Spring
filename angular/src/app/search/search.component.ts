@@ -30,8 +30,9 @@ Search(){
   .subscribe(Response => {
   let ele = document.getElementById("test") as HTMLDivElement;
   this.data=Response;
-  console.log(Response);
-  });
+  console.log("For debugging:",Response);
+  },
+  error=>{alert("Refresh or wait, error occurred");console.log("For debugging:",error);});
 }
 
 

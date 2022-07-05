@@ -2,8 +2,7 @@ package tech.getarrays.mandatemanager.service;
 
 import java.util.List;
 
-import com.mandatemanager.displayformat.MandateTable;
-
+import tech.getarrays.mandatemanager.displayformat.MandateTable;
 import tech.getarrays.mandatemanager.model.Mandate;
 
 

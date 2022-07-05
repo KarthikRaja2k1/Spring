@@ -9,8 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.mandatemanager.displayformat.MandateTable;
-
+import tech.getarrays.mandatemanager.displayformat.MandateTable;
 import tech.getarrays.mandatemanager.model.Mandate;
 
 @Repository
