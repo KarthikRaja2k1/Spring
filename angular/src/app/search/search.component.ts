@@ -19,8 +19,13 @@ export class SearchComponent implements OnInit {
   // mandateType = new FormControl(20, Validators.required); 
   cols:Array<any>;
   data:any;
+<<<<<<< HEAD
   constructor(private http : HttpClient,private  dialogRef : MatDialog){
      this.cols=["id","payerId","payeeId","validFrom","validTo","status"]
+=======
+  constructor(private http : HttpClient){
+     this.cols=["Mandate ID","Payee","Payer","Mandate valid From","Mandate Valid To","Status","Actions"]
+>>>>>>> 2446e159b4dad5e83ebc11e7ed4af4195de57692
      this.data=[]
 }
 

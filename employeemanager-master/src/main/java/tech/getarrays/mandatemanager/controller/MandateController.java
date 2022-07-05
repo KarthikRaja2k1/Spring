@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mandatemanager.displayformat.MandateTable;
 
 import tech.getarrays.mandatemanager.model.Mandate;
 import tech.getarrays.mandatemanager.service.MandateService;
@@ -25,7 +26,7 @@ public class MandateController {
 
 	@PostMapping("/mandates")
 	@JsonProperty("Params")
-	public ResponseEntity<List<Mandate>> getAllMandate(@RequestBody HashMap<String, String> Params) {
+	public ResponseEntity<List<MandateTable>> getAllMandate(@RequestBody HashMap<String, String> Params) {
 		System.out.println(Params.entrySet());
 		for (String key : Params.keySet()) {
 			if (Params.get(key) == null)
@@ -48,7 +49,7 @@ public class MandateController {
 				mandateService.getForAutoComplete("branch_code", Params.get("branchCode"), Params.get("mandateType")));
 	}
 
-	@GetMapping("/mandateType")
+	@PostMapping("/mandateType")
 	@JsonProperty("Params")
 	public ResponseEntity<List<String>> getMandateType(@RequestBody HashMap<String, String> Params) {
 		for (String Key : Params.keySet()) {
