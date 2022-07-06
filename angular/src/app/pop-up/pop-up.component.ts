@@ -11,59 +11,70 @@ export class PopUpComponent implements OnInit {
   mandate:any;
   payee:any;
   payer:any;
+  isDataLoaded=false;
   payerId = new FormControl();
   payerLinkedAccount = new FormControl();  
   payerAccountType = new FormControl();
+  mandateId = new FormControl();
+  modal = new FormControl();
   
   // country = new FormControl({value: 'India', disabled: true});
   // married = new FormControl(true);
   // mandateType = new FormControl(20, Validators.required);
-  filteredPayerId:Array<any>; 
-  filteredPayerLinkedAccount:Array<any>;
-  filteredPayerAccountType:Array<any>;
+  filteredPayerId:any; 
+  filteredPayerLinkedAccount:any;
+  filteredPayerAccountType:any;
 
   constructor(private http : HttpClient,@Inject(MAT_DIALOG_DATA) public data: any){
     this.filteredPayerId=[];
     this.filteredPayerAccountType = [];
-    this.filteredPayerLinkedAccount = [];};
-  ngOnInit(): void {
+    this.filteredPayerLinkedAccount = [];
     
     this.http.get(this.data)
     .subscribe(Response => {this.mandate=Response;
     this.http.get('http://localhost:8080/accounts/'+this.mandate.payeeId) .subscribe(Response => {this.payee=Response;});
-    this.http.get('http://localhost:8080/accounts/'+this.mandate.payerId) .subscribe(Response => {this.payer=Response;});
+    this.http.get('http://localhost:8080/accounts/'+this.mandate.payerId) .subscribe(Response => {this.payer=Response;
+    this.mandateId.setValue(this.mandate.id);
+    this.payerId.setValue(this.payer.id);
+    this.payerLinkedAccount.setValue(this.payer.linkedAccount);
+    this.payerAccountType.setValue(this.payer.accountType);
     this.FilterData();
+    this.isDataLoaded=true;
     });
-    this.payerId.valueChanges.forEach(response=>{this.FilterData()});
+
+  
+
+    });
+    this.payerId.valueChanges.forEach(response=>{this.payerLinkedAccount.setValue("");this.payerAccountType.setValue("");this.FilterData()});
     this.payerAccountType.valueChanges.forEach(response=>{this.FilterData()});
     this.payerLinkedAccount.valueChanges.forEach(response=>{this.FilterData()});
 
+  
+  };
+  ngOnInit(): void {
+    
   }
 
   
 FilterData(){
-  let post={ "field":"payerId","Id":this.payerId.value,"accountType":this.payerAccountType.value,"linkedAccount":this.payerLinkedAccount.value}
+  let postdata={ "field":"payerId","Id":this.payerId.value,"accountType":this.payerAccountType.value,"linkedAccount":this.payerLinkedAccount.value}
   let url="http://localhost:8080/accounts/autocomplete";
-  post.field = "payerId";
-  this.filteredPayerId = this.Autocomplete(url,post);
-  post.field = "accountType";
-  this.filteredPayerAccountType = this.Autocomplete(url,post);
-  post.field = "linkedAccount";
-  this.filteredPayerLinkedAccount = this.Autocomplete(url,post);
-  // post.field = "accountNumber";
-  // this.filteredAccountNumber = this.Autocomplete(url,post);
+  postdata.field = "accountId";
+  this.http.post(url,postdata).subscribe(Response =>{this.filteredPayerId=Response;});
+  postdata.field = "accountType";
+  this.http.post(url,postdata).subscribe(Response =>{this.filteredPayerAccountType=Response;});
+  postdata.field = "linkedAccount";
+  this.http.post(url,postdata).subscribe(Response =>{this.filteredPayerLinkedAccount=Response;});
   
 }
 
-  Autocomplete(url:string,post:any){
-    this.http.post(url,post)
-    .subscribe(Response => {
-    console.log("For debugging autocomplete:",Response);
-    return <Array<any>>Response;
-    
-    });
-    return [];
-  }
+submit(){
+  let url="http://localhost:8080/mandates"
+  let putdata ={
+    "id":this.mandateId.value,
+    "payerId":this.payerId } 
+  this.http.put(url,putdata).subscribe(Response =>{this.filteredPayerLinkedAccount=Response;});
+}
   
 
 }

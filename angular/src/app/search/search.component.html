@@ -2,7 +2,7 @@
     <h3 class="header">Search Mandates</h3>
     <p id="side">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amend, Suspend or Cancel Mandates</p>
     <hr>
-    <form>
+    <form style="max-width:1400px">
          <div class="f">
           <label for="Branch Code" class="label">
             Branch Code
@@ -44,7 +44,8 @@
             </mat-option>
           </mat-autocomplete>
          <br><br>
-        <button class="button-18" (click)="Search();"type="submit">Search</button> <br><br>
+        <input type="button" class="button-18" (click)="Search();"type="submit" value="Search" /> <br><br>
+      </form> 
       <div id="table">
         <table style="width: 100%;border: 1px black solid;">
           <tr><th *ngFor="let col of cols">{{col}}</th></tr>
@@ -60,10 +61,10 @@
             </tr>
           </ng-container>
           <ng-template  #templateA>
-            <div >No output found</div>
+            <div >Search for valid data</div>
           </ng-template>
         </table>
       </div>
-      </form>
+    
 
 </div>

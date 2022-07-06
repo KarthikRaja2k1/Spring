@@ -1,16 +1,35 @@
+
+<div *ngIf="isDataLoaded">
 <h2> Edit Mandate  </h2>
 <hr>
+
+<input type="text" [formControl] ="mandateId" hidden/>
 <p>Mandate Ref No:{{mandate.refNo}}</p> 
 <p>Status:{{mandate.status}}</p>
 <h3>Amend Details</h3>
 <hr>
 <form >
     <label for="">Payer </label>
-    <input type="text" [formControl] ="payerId"><br><br>
+    <input type="text" [formControl] ="payerId" [matAutocomplete]="autopayerId" />
+    <mat-autocomplete #autopayerId="matAutocomplete">
+      <mat-option *ngFor="let item of filteredPayerId" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-autocomplete><br><br>
     <label for="">Payer Linked Account </label>
-    <input type="text" [formControl] ="payerLinkedAccount"><br><br>
+    <input type="text" [formControl] ="payerLinkedAccount" [matAutocomplete]="autolinkedAccount" />
+    <mat-autocomplete #autolinkedAccount="matAutocomplete">
+      <mat-option *ngFor="let item of filteredPayerLinkedAccount" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-autocomplete><br><br>
     <label for="">Payer Account Type </label>
-    <input type="text" [formControl] ="payerAccountType"><br><br>
+    <input type="text" [formControl] ="payerAccountType" [matAutocomplete]="autoPayerAccountType" />
+    <mat-autocomplete #autoPayerAccountType="matAutocomplete">
+      <mat-option *ngFor="let item of filteredPayerAccountType" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-autocomplete><br><br>
 
 <h3>Payee Details</h3>
 <hr>
@@ -25,11 +44,7 @@
 <p>Payee ID Type : {{payee.accountIdType}}</p>
 <p>Payee -Linked PayID : {{payee.linkedPayId}}</p>
 
-<button type="reset">
-    Cancel
-</button >
-<button type="submit">
-    Submit
-</button>
-
+<button mat-button mat-dialog-close>Cancel</button>
+<input mat-button mat-dialog-close cdkFocusInitial type="submit" (click)="submit();" value="submit"/>
 </form>
+</div>

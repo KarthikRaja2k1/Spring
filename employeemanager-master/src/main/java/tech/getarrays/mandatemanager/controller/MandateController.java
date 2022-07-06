@@ -41,7 +41,7 @@ public class MandateController {
 
 	@GetMapping("/branchCode")
 	@JsonProperty("Params")
-	public ResponseEntity<List<String>> getBranchCodes(@RequestBody HashMap<String, String> Params) {
+	public ResponseEntity<List<Object>> getBranchCodes(@RequestBody HashMap<String, String> Params) {
 		for (String Key : Params.keySet()) {
 			if (Params.get(Key) == null) {
 				Params.replace(Key, "%");
@@ -53,7 +53,7 @@ public class MandateController {
 
 	@PostMapping("/mandateType")
 	@JsonProperty("Params")
-	public ResponseEntity<List<String>> getMandateType(@RequestBody HashMap<String, String> Params) {
+	public ResponseEntity<List<Object>> getMandateType(@RequestBody HashMap<String, String> Params) {
 		for (String Key : Params.keySet()) {
 			if (Params.get(Key) == null) {
 				Params.replace(Key, "%");
@@ -64,7 +64,7 @@ public class MandateController {
 	}
 	@PostMapping("/mandates/autocomplete")
 	@JsonProperty("Params")
-	public ResponseEntity<List<String>> getAutocomplete(@RequestBody HashMap<String, String> Params) {
+	public ResponseEntity<List<Object>> getAutocomplete(@RequestBody HashMap<String, String> Params) {
 		HashMap<String, String> map = new HashMap<>();
 		System.out.println("came to auto"+Params);
         // Adding elements to the Map
@@ -79,7 +79,7 @@ public class MandateController {
 				Params.replace(Key, "%");
 			}
 		}
-		System.out.println("From conteoller"+mandateService.getForAutoComplete(map.get(Params.get("field")),Params.get("branchCode"), Params.get("mandateId"),Params.get("mandateType"),Params.get("accountNumber")));
+		System.out.println(map.get(Params.get("field"))+"From conteoller"+mandateService.getForAutoComplete(map.get(Params.get("field")),Params.get("branchCode"), Params.get("mandateId"),Params.get("mandateType"),Params.get("accountNumber")));
 		return ResponseEntity.ok().body(
 				mandateService.getForAutoComplete(map.get(Params.get("field")),Params.get("branchCode"), Params.get("mandateId"),Params.get("mandateType"),Params.get("accountNumber")));
 	

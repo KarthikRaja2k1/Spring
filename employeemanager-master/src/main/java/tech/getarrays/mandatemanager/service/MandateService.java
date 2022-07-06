@@ -12,6 +12,6 @@ public interface MandateService {
 	List<MandateTable> getAllMandate(String branchCode,String mandateType);
 	Mandate getMandateById(Long mandateId);
 	void deleteMandate(Long mandateId);
-	public List<String> getForAutoComplete(String field, String branchCode,String mandateId, String mandateType, String accountNumber);
+	public List<Object> getForAutoComplete(String field, String branchCode,String mandateId, String mandateType, String accountNumber);
 }
 

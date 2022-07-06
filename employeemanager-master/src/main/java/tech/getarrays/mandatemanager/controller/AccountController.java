@@ -45,7 +45,7 @@ public class AccountController {
 		  
         // Adding elements to the Map
         // using standard put() method
-        map.put("accountId", "account_id");
+        map.put("accountId", "id");
         map.put("accountType", "account_type");
         map.put("linkedAccount", "linked_account");
         

@@ -38,7 +38,7 @@ public class MandateServiceImplementation implements MandateService {
 
 		if (mandateObject.isPresent()) {
 			Mandate mandateUpdate = mandateObject.get();
-			mandateUpdate.setId(mandate.getId());
+			//mandateUpdate.setId(mandate.getId());
 			mandateUpdate.setPayerId(mandate.getPayerId());
 			// mandateUpdate.setId(mandate.getId());
 			// mandateUpdate.setId(mandate.getId());
@@ -89,7 +89,7 @@ public class MandateServiceImplementation implements MandateService {
 	}
 
 	@Override
-	public List<String> getForAutoComplete(String field, String branchCode,String mandateId, String mandateType, String accountNumber) {
+	public List<Object> getForAutoComplete(String field, String branchCode,String mandateId, String mandateType, String accountNumber) {
 		String queryString = "select distinct ";
 		queryString += field;
 		if (branchCode == "" || branchCode == null) {

@@ -45,19 +45,17 @@
   padding: 0px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 10px;
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
-  /* float: right; */
-  margin-left: 1180px;
-  margin-right: 20px;
+  float:right;
 }
 
-.button-18:hover,
-.button-18:focus { 
+.button-18:hover { 
   background-color: #16437E;
   color: #ffffff;
 }
