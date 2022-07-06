@@ -89,7 +89,7 @@ public class MandateServiceImplementation implements MandateService {
 	}
 
 	@Override
-	public List<String> getForAutoComplete(String field, String branchCode, String mandateType) {
+	public List<String> getForAutoComplete(String field, String branchCode,String mandateId, String mandateType, String accountNumber) {
 		String queryString = "select distinct ";
 		queryString += field;
 		if (branchCode == "" || branchCode == null) {
@@ -98,11 +98,16 @@ public class MandateServiceImplementation implements MandateService {
 		if (mandateType == "" || mandateType == null) {
 			mandateType = "%";
 		}
+		if (mandateId == "" || mandateId == null) {
+			mandateId = "%";
+		}
+		if(accountNumber=="" || accountNumber==null) {
+			accountNumber="%";}
 		queryString += " from mandates where branch_code like '" + branchCode + "%' " + "and mandate_type like '"
-				+ mandateType + "%'";
+				+ mandateType + "%' " + " and Cast(mandates.ID  as varchar(11) )  like '" + mandateId + "%' " ;
 		Query q = entityManager.createNativeQuery(queryString);
 		System.out.println(q.getResultList());
 		return q.getResultList();
 	}
 
-}
+	}

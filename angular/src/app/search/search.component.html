@@ -7,27 +7,42 @@
           <label for="Branch Code" class="label">
             Branch Code
           </label>
-          <input  type="text" [formControl] ="branchCode" placeholder="Enter Branch Code">
+          <input id="branchCode" type="text" [formControl] ="branchCode" placeholder="Enter Branch Code" />
         </div>
       
          <div class="f">
           <label for="Mandate Type" class="label">
             Mandate Type
           </label>
-          <input id="branchCode" type="number" [formControl]="mandateType" placeholder="Enter Mandate Type">
+          <input id="mandateType" type="text" [formControl]="mandateType" placeholder="Enter Mandate Type" [matAutocomplete]="autoMandateType" />
+          <mat-autocomplete #autoMandateType="matAutocomplete">
+            <mat-option *ngFor="let item of filteredMandateType" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-autocomplete>
         </div>
 
          <div class="f">
           <label for="Mandate ID" class="label">
             Mandate ID
           </label>
-          <input id="address" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID">
+          <input id="mandateId" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID" [matAutocomplete]="autoMandateId" />
+          <mat-autocomplete #autoMandateId="matAutocomplete">
+            <mat-option *ngFor="let item of filteredMandateId" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-autocomplete>
           </div>
 
           <label for="Account Number" class="label">
             Account Number
           </label>
-          <input id="address" type="text" [formControl] = "accountNumber" placeholder="Enter Account Number">
+          <input id="accountNumber" type="text" [formControl] = "accountNumber" placeholder="Enter Account Number" [matAutocomplete]="autoAccountNumber" />
+          <mat-autocomplete #autoAccountNumber="matAutocomplete">
+            <mat-option *ngFor="let item of filteredAccountNumber" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-autocomplete>
          <br><br>
         <button class="button-18" (click)="Search();"type="submit">Search</button> <br><br>
       <div id="table">
@@ -41,7 +56,7 @@
               <td>{{row["validFrom"]}}</td>
               <td>{{row["validTo"]}}</td>
               <td>{{row["status"]}}</td>
-              <td><a [attr.href]="'http://localhost:8080/mandates/'+row['mandateId']">Edit</a></td>
+              <td><a (click)="openDialog('http://localhost:8080/mandates/'+row['mandateId'])">Edit</a></td>
             </tr>
           </ng-container>
           <ng-template  #templateA>
@@ -50,8 +65,5 @@
         </table>
       </div>
       </form>
-      <button (click)="openDialog()">
-        Edit
-      </button>
 
 </div>

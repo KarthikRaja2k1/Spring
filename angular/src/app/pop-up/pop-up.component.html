@@ -1,29 +1,29 @@
 <h2> Edit Mandate  </h2>
 <hr>
-<p>Mandate Ref No:</p> 
-<p>Status:</p>
+<p>Mandate Ref No:{{mandate.refNo}}</p> 
+<p>Status:{{mandate.status}}</p>
 <h3>Amend Details</h3>
 <hr>
 <form >
     <label for="">Payer </label>
-    <input type="text"><br><br>
+    <input type="text" [formControl] ="payerId"><br><br>
     <label for="">Payer Linked Account </label>
-    <input type="text"><br><br>
+    <input type="text" [formControl] ="payerLinkedAccount"><br><br>
     <label for="">Payer Account Type </label>
-    <input type="text"><br><br>
+    <input type="text" [formControl] ="payerAccountType"><br><br>
 
 <h3>Payee Details</h3>
 <hr>
 <p>Payee</p>
-<p>Payee account type</p>
-<p>Payee Alias Type</p>
-<p>Payee BIC</p>
+<p>Payee account type : {{payee.accountType}}</p>
+<p>Payee Alias Type : {{payee.accountAliasType}}</p>
+<p>Payee BIC : {{payee.accountBIC}}</p>
 <br>
-<p>Ultimate Payee</p>
+<p>Ultimate Payee : {{payee.UltimateAccountHolder}}</p>
 <br>
-<p>Payee -Linked Account</p>
-<p>Payee ID Type</p>
-<p>Payee -Linked PayID</p>
+<p>Payee -Linked Account : {{payee.linkedAccount}}</p>
+<p>Payee ID Type : {{payee.accountIdType}}</p>
+<p>Payee -Linked PayID : {{payee.linkedPayId}}</p>
 
 <button type="reset">
     Cancel

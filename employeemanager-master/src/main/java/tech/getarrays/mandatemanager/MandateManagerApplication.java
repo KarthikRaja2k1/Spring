@@ -16,7 +16,6 @@ import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
 @RestController
-@EntityScan("tech.getarrays.mandatemanager.model")
 public class MandateManagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MandateManagerApplication.class, args);
