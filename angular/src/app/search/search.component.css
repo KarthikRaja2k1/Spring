@@ -21,7 +21,18 @@
     font-weight: 300;
 } 
 
-
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+.dropdown::before{
+  position: absolute;
+  content: " \2193";
+  top: 0px;
+  right: -8px;
+  height: 20px;
+  width: 20px;
+}
 
 /* CSS */
 .button-18 {
@@ -55,6 +66,25 @@
   float:right;
 }
 
+a{
+  color:blue;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
 .button-18:hover { 
   background-color: #16437E;
   color: #ffffff;
@@ -74,6 +104,7 @@
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  text-align: center;
 }
 th{
   background-color: lightblue;

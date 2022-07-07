@@ -14,7 +14,7 @@ import tech.getarrays.mandatemanager.model.Mandate;
 
 @Repository
 public interface MandateRepository extends JpaRepository<Mandate,Long> {
-	@Query(value="SELECT mandates.id as MandateId ,status as Status,FORMATDATETIME(valid_From ,'yyyy-MM-dd') as ValidFrom,FORMATDATETIME(valid_To,'yyyy-MM-dd') as ValidTo,A.Name as PayeeName,B.Name as PayerName FROM mandates,Accounts as A, Accounts as B WHERE payee_Id = A.id and payer_Id=B.id and mandates.branch_Code LIKE :branchCode% and mandate_type like :mandateType%",nativeQuery = true)
-	List<MandateTable> findByQuery(@Param("branchCode") String branchCode,@Param("mandateType") String mandateType);
+	@Query(value="SELECT mandates.id as MandateId ,status as Status,FORMATDATETIME(valid_From ,'yyyy-MM-dd') as ValidFrom,FORMATDATETIME(valid_To,'yyyy-MM-dd') as ValidTo,payee.Name as PayeeName,payer.Name as PayerName FROM mandates,Accounts as payee, Accounts as payer WHERE payee_Id = payee.id and payer_Id=payer.id and mandates.branch_Code LIKE :branchCode% and mandate_type like :mandateType% and Cast(mandates.ID  as varchar(11))  like :mandateId% and payer.account_Number like :accountNumber% ",nativeQuery = true)
+	List<MandateTable> findByQuery(@Param("branchCode") String branchCode,@Param("mandateType") String mandateType,@Param("mandateId") String mandateId,@Param("accountNumber") String accountNumber);
 
 }

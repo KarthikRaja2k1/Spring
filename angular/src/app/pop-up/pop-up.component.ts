@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpClient} from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 @Component({
@@ -25,7 +25,8 @@ export class PopUpComponent implements OnInit {
   filteredPayerLinkedAccount:any;
   filteredPayerAccountType:any;
 
-  constructor(private http : HttpClient,@Inject(MAT_DIALOG_DATA) public data: any){
+  constructor(private http : HttpClient,private dialogRef: MatDialogRef<PopUpComponent>,@Inject(MAT_DIALOG_DATA) public data: any){
+    
     this.filteredPayerId=[];
     this.filteredPayerAccountType = [];
     this.filteredPayerLinkedAccount = [];
@@ -69,11 +70,16 @@ FilterData(){
 }
 
 submit(){
-  let url="http://localhost:8080/mandates"
-  let putdata ={
+  var url="http://localhost:8080/mandates"
+  var putdata ={
     "id":this.mandateId.value,
-    "payerId":this.payerId } 
-  this.http.put(url,putdata).subscribe(Response =>{this.filteredPayerLinkedAccount=Response;});
+    "payerId":this.payerId.value } ;
+  console.log("PUT");
+  this.http.put<any>(url,putdata).subscribe();
+  this.dialogRef.close();
+}
+close() {
+  this.dialogRef.close();
 }
   
 

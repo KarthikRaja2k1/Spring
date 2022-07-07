@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵsetClassMetadata } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from  '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
-import { MatAutocomplete } from '@angular/material/autocomplete';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import {ThemePalette} from '@angular/material/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,7 +15,9 @@ export class SearchComponent implements OnInit {
   mandateType = new FormControl();  
   accountNumber = new FormControl();
   mandateId = new FormControl();
-  
+  color: ThemePalette = 'accent';
+  isAutocomplete=true;
+  disabled = false;
   // country = new FormControl({value: 'India', disabled: true});
   // married = new FormControl(true);
   // mandateType = new FormControl(20, Validators.required); 
@@ -24,8 +27,6 @@ export class SearchComponent implements OnInit {
   filteredAccountNumber:any;
   data:any;
   options:Array<any>;
-
-  filteredOptions=["Sam", "Varun", "Jasmine"];
   constructor(private http : HttpClient,private  dialogRef : MatDialog){
     this.cols=["Mandate ID","Payee","Payer","Mandate valid From","Mandate Valid To","Status","Actions"]
     this.data=[]
@@ -66,13 +67,21 @@ Search(){
 }
 openDialog(param:any){
 
-  this.dialogRef.open(PopUpComponent,{
+  const dialogRef = this.dialogRef.open(PopUpComponent,{
     
     width: '600px',
     height: '1000px',
     position: {right: '5px'},
     data: param
-  }) 
-  
+  });
+
+  dialogRef.afterClosed().subscribe(
+    ()=>this.FilterData());
+
+}
+check(){
+  if(this.isAutocomplete==true){
+    this.isAutocomplete=false;
+  }else this.isAutocomplete=true;
 }
 }

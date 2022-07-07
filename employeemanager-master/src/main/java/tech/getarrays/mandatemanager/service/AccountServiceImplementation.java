@@ -52,7 +52,6 @@ public class AccountServiceImplementation implements AccountService {
 		queryString += " from accounts where id like '" + accountId + "%' " + "and account_type like '"
 				+ accountType + "%'" + "and linked_account like '"+ linkedAccount +"%'";
 		Query q = entityManager.createNativeQuery(queryString);
-		System.out.println(q.getResultList());
 		return q.getResultList();
 	}
 

@@ -25,7 +25,7 @@
     </mat-autocomplete><br><br>
     <label for="">Payer Account Type </label>
     <input type="text" [formControl] ="payerAccountType" [matAutocomplete]="autoPayerAccountType" />
-    <mat-autocomplete #autoPayerAccountType="matAutocomplete">
+    <mat-autocomplete #autoPayerAccountType="matAutocomplete" >
       <mat-option *ngFor="let item of filteredPayerAccountType" [value]="item">
         {{item}}
       </mat-option>
@@ -44,7 +44,7 @@
 <p>Payee ID Type : {{payee.accountIdType}}</p>
 <p>Payee -Linked PayID : {{payee.linkedPayId}}</p>
 
-<button mat-button mat-dialog-close>Cancel</button>
-<input mat-button mat-dialog-close cdkFocusInitial type="submit" (click)="submit();" value="submit"/>
+<button (click)="close();" >Cancel</button>
+<input   type="submit" (click)="submit();" value="submit"/>
 </form>
 </div>

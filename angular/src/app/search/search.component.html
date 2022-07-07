@@ -2,8 +2,10 @@
     <h3 class="header">Search Mandates</h3>
     <p id="side">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amend, Suspend or Cancel Mandates</p>
     <hr>
-    <form style="max-width:1400px">
-         <div class="f">
+    <form style="max-width:1400px"  autocomplete="off">
+      <ng-container  *ngIf="isAutocomplete==true else templateAutoCompletOff">
+      
+      <div class="f">
           <label for="Branch Code" class="label">
             Branch Code
           </label>
@@ -14,7 +16,9 @@
           <label for="Mandate Type" class="label">
             Mandate Type
           </label>
+          <div class="dropdown">
           <input id="mandateType" type="text" [formControl]="mandateType" placeholder="Enter Mandate Type" [matAutocomplete]="autoMandateType" />
+          </div>
           <mat-autocomplete #autoMandateType="matAutocomplete">
             <mat-option *ngFor="let item of filteredMandateType" [value]="item">
               {{item}}
@@ -26,9 +30,11 @@
           <label for="Mandate ID" class="label">
             Mandate ID
           </label>
-          <input id="mandateId" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID" [matAutocomplete]="autoMandateId" />
-          <mat-autocomplete #autoMandateId="matAutocomplete">
-            <mat-option *ngFor="let item of filteredMandateId" [value]="item">
+          <div class="dropdown">
+          <input mame = "mandateId" id="mandateId" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID" [matAutocomplete]="autoMandateId"/>
+          </div>
+          <mat-autocomplete #autoMandateId="matAutocomplete" >
+            <mat-option  *ngFor="let item of filteredMandateId" [value]="item">
               {{item}}
             </mat-option>
           </mat-autocomplete>
@@ -37,13 +43,60 @@
           <label for="Account Number" class="label">
             Account Number
           </label>
+          <div class="dropdown">
           <input id="accountNumber" type="text" [formControl] = "accountNumber" placeholder="Enter Account Number" [matAutocomplete]="autoAccountNumber" />
+        </div>
           <mat-autocomplete #autoAccountNumber="matAutocomplete">
             <mat-option *ngFor="let item of filteredAccountNumber" [value]="item">
               {{item}}
             </mat-option>
           </mat-autocomplete>
          <br><br>
+      </ng-container>
+   
+    <ng-template #templateAutoCompletOff>
+      <div class="f">
+        <label for="Branch Code" class="label">
+          Branch Code
+        </label>
+        <input id="branchCode" type="text" [formControl] ="branchCode" placeholder="Enter Branch Code" />
+      </div>
+    
+       <div class="f">
+        <label for="Mandate Type" class="label">
+          Mandate Type
+        </label>
+        <div class="dropdown">
+        <input id="mandateType" type="text" [formControl]="mandateType" placeholder="Enter Mandate Type"  />
+        </div>
+
+      </div>
+
+       <div class="f">
+        <label for="Mandate ID" class="label">
+          Mandate ID
+        </label>
+        <div class="dropdown">
+        <input mame = "mandateId" id="mandateId" type="text" [formControl]="mandateId" placeholder="Enter Mandate ID"/>
+        </div>
+
+        </div>
+
+        <label for="Account Number" class="label">
+          Account Number
+        </label>
+        <div class="dropdown">
+        <input id="accountNumber" type="text" [formControl] = "accountNumber" placeholder="Enter Account Number"  />
+      </div>
+   
+       <br><br>
+    </ng-template>   
+         <mat-slide-toggle class="example-margin"
+         [color]="color"
+         [checked]="isAutocomplete"
+         [disabled]="disabled"
+         (click)="check();">
+         enable Autocomplete</mat-slide-toggle>
         <input type="button" class="button-18" (click)="Search();"type="submit" value="Search" /> <br><br>
       </form> 
       <div id="table">

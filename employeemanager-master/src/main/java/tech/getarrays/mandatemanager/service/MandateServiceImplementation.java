@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +52,7 @@ public class MandateServiceImplementation implements MandateService {
 	}
 
 	@Override
-	public List<MandateTable> getAllMandate(String branchCode, String mandateType) {
+	public List<MandateTable> getAllMandate( String branchCode,String mandateType, String mandateId,String accountNumber) {
 		// System.out.println("DDDDDDDDD"+Id);
 		// if(Id!=null)
 		// return this.mandateRepository.findByIdLike(Id);
@@ -61,7 +62,7 @@ public class MandateServiceImplementation implements MandateService {
 		if (mandateType == "" || mandateType == null) {
 			mandateType = "%";
 		}
-		return this.mandateRepository.findByQuery(branchCode, mandateType);
+		return this.mandateRepository.findByQuery(branchCode, mandateType,mandateId,accountNumber);
 		// return this.mandateRepository.findAll();
 	}
 
@@ -106,7 +107,6 @@ public class MandateServiceImplementation implements MandateService {
 		queryString += " from mandates where branch_code like '" + branchCode + "%' " + "and mandate_type like '"
 				+ mandateType + "%' " + " and Cast(mandates.ID  as varchar(11) )  like '" + mandateId + "%' " ;
 		Query q = entityManager.createNativeQuery(queryString);
-		System.out.println(q.getResultList());
 		return q.getResultList();
 	}
 
